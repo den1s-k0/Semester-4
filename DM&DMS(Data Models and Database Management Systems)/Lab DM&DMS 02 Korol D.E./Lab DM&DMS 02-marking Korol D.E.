@@ -1,0 +1,26 @@
+Students {
+	StudentID int pk increments unique
+	StudentName varchar
+	Email varchar unique
+	TelegramName varchar null unique
+	PhoneNumber varchar unique
+	RegistrationDate date
+}
+
+Courses {
+	CourseID int pk increments unique
+	CourseName varchar
+	TeacherName varchar
+	Duration int
+	Subject varchar
+	Price int
+}
+
+Enrollments {
+	EnrollmentID int pk increments unique
+	StudentID int *> Students.StudentID
+	CourseID int *> Courses.CourseID
+	EnrollmentDate date
+	Progress int
+	Grade int null
+}
