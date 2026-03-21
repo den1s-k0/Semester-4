@@ -1,0 +1,52 @@
+
+Participants {
+	Participant_ID integer pk increments unique
+	Full_Name integer
+	Email varchar unique
+	Address varchar
+	Accommodation varchar null
+	Company varchar null
+	Post varchar null
+	Role_ID integer *> Roles.Role_ID
+}
+
+Reports {
+	Report_ID integer pk increments unique
+	Report_Title varchar
+	Session_ID integer *> Sessions.Session_ID
+	Report_Summary text
+}
+
+Roles {
+	Role_ID integer pk increments unique
+	Role_name varchar unique
+	Role_description text
+}
+
+Sections {
+	Section_ID integer pk increments unique
+	Section_name varchar
+	Section_description text
+}
+
+Sessions {
+	Session_ID integer pk increments unique
+	Section_ID integer *> Sections.Section_ID
+	Session_Date date
+	Start_Time time
+	End_Time time
+	Room_Id integer *> Rooms.Room_ID
+}
+
+Report_Authors {
+	Report_Author_ID integer pk increments unique
+	Report_ID integer *> Reports.Report_ID
+	Participant_ID integer *> Participants.Participant_ID
+}
+
+Rooms {
+	Room_ID integer pk increments unique
+	Room_Name varchar
+	Room_Description text
+}
+
